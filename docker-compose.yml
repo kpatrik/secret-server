@@ -4,6 +4,8 @@ services:
     build: .
     ports:
     - "3010:3010"
+    environment:
+      - NODE_ENV=development
     volumes:
     - .:/code
     links:

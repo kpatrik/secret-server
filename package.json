@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/kpatrik/secret-server#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "config": "^3.3.1",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.5"
   }
 }
