@@ -1,5 +1,9 @@
 {
   "mongo": {
     "url": ""
+  },
+
+  "crypto": {
+    "secret": "my-local-secret"
   }
 }

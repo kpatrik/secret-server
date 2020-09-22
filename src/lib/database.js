@@ -3,17 +3,17 @@ const mongoose = require('mongoose');
 
 module.exports = {
   connect() {
-    return new Promise( (resolve, reject) => {
-      mongoose.connect(config.get('mongo.url'), {useNewUrlParser: true});
+    return new Promise((resolve, reject) => {
+      mongoose.connect(config.get('mongo.url'), { useNewUrlParser: true });
       const db = mongoose.connection;
       db.on('error', (error) => {
         console.log(error);
         reject();
       });
-      db.once('open', function() {
+      db.once('open', () => {
         console.log('connected to MongoDB');
         resolve();
       });
     });
-  }
-}
+  },
+};
