@@ -9,10 +9,6 @@ const port = 3010;
 
 app.use(bodyParser.json());
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
-
 decorateSecretAPIEndpoints(app);
 
 app.on('ready', () => {

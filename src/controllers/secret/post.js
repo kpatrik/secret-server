@@ -5,7 +5,8 @@ module.exports = {
   async postSecret(req, res) {
     let data;
     try {
-      data = await Secret.save(req.body);
+      const secretRepository = Secret.create();
+      data = await secretRepository.save(req.body);
     } catch (e) {
       if (e instanceof ValidationError) {
         res.status(400).send(e.message);
