@@ -23,7 +23,23 @@ class Secret {
   }
 
   static async get(hash) {
-    const document = await SecretModel.findOne({ hash }).exec();
+    const now = moment().toString();
+
+    const document = await SecretModel.findOneAndUpdate(
+      {
+        hash,
+        remainingViews: { $gt: 0 },
+        expiresAt: { $gt: now },
+      },
+      { $inc: { remainingViews: -1 } },
+      { new: true },
+    ).exec();
+
+    if (!document) {
+      console.log('todo: throw not found error');
+      return;
+    }
+
     document.secretText = decrypt(document.secretText);
 
     return this._createResponse(document);
