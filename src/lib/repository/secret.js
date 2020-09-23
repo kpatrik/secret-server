@@ -31,6 +31,8 @@ class Secret {
 
     await document.save();
 
+    document.secretText = secret;
+
     return this._createResponse(document);
   }
 

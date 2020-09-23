@@ -27,14 +27,14 @@ describe('Secret repositroy', () => {
       expect(response.hash).to.eql('random-test-hash');
     });
 
-    it('should provide an encrypted version of the secret', async () => {
+    it('should save an encrypted version of the secret and reply with the original', async () => {
       const encryptStub = sinon.stub().returns('encrypted-secret');
       const stub = sinon.stub();
       const secretRepository = new Secret(stub, encryptStub, stub);
       const response = await secretRepository.save({ secret: 'testsecret', expireAfterViews: 1, expireAfter: 1 });
 
       expect(encryptStub).to.have.been.calledWith('testsecret');
-      expect(response.secretText).to.eql('encrypted-secret');
+      expect(response.secretText).to.eql('testsecret');
     });
 
     it('should save the current time as createdAt', async () => {

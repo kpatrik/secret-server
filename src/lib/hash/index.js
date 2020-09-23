@@ -2,7 +2,7 @@ const crypto = require('crypto');
 
 module.exports = {
   createRandomHash(time) {
-    const randomNumber = Math.random();
+    const randomNumber = crypto.randomBytes(16);
 
     return crypto.createHash('sha256')
       .update(`${time}-${randomNumber}`)
